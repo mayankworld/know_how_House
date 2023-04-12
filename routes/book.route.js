@@ -27,7 +27,6 @@ router.post('/addbooks', (req,res,next) => {
                 publisher:req.body.publisher,
                 book_description: req.body.book_description
             });
-            console.log(addbook,"testyui");
             bcrypt.genSalt(10, (err) => {
                 if(err) console.error('There was an error', err);
                     else {
@@ -35,7 +34,7 @@ router.post('/addbooks', (req,res,next) => {
                             if (err) {
                                 return next(err);
                             }
-                            res.send('Book Created successfully')
+                            res.send('Book Created successfully');
                         })  
                     }
                 });

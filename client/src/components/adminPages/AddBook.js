@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { newbooks, logoutUser, getBookCat } from '../../actions/authentication';
+import { newbooks, logoutUser, getBookCat,emptyError} from '../../actions/authentication';
 
 class AddBook extends Component {
 
@@ -57,7 +57,14 @@ class AddBook extends Component {
     }
     render() {
         const { schema } = this.props.books;
+        const error = this.props.errors;
+        if(Object.keys(error).length===0){
 
+        }else{
+            alert("This Book Name is already taken try something else!");
+            this.props.emptyError();
+        }
+        console.log(error,"error");
         return (
             <div className="addbooks" >
                 <div className="row">
@@ -175,5 +182,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { newbooks, logoutUser, getBookCat }
+    { newbooks, logoutUser, getBookCat,emptyError }
 )(withRouter(AddBook));

@@ -1,4 +1,5 @@
 export const GET_ERRORS = 'GET_ERRORS';
+export const EMPTY_ERRORS = 'EMPTY_ERRORS';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const GET_STUDENT = 'GET_STUDENT';
 
