@@ -34,24 +34,35 @@ class AddBook extends Component {
     onSubmit = e => {
         e.preventDefault();
         let books = this.props.books.viewBook;
-        books.length > 0 && books.map((el) => {
-            console.log(el);
-            if (el.book_name == this.state.book_name) {
-                alert("This Book Name is already taken try something else!");
-            } else {
-                const add_book = {
-                    book_id: this.state.book_id,
-                    book_name: this.state.book_name,
-                    author_name: this.state.author_name,
-                    book_cat: this.state.book_cat,
-                    quantity: this.state.quantity,
-                    publisher: this.state.publisher,
-                    book_description: this.state.book_description
-                };
-
-                this.props.newbooks(add_book, this.props.history);
-            }
-        })
+        if (books.length > 0) {
+            books.map((el) => {
+                if (el.book_name == this.state.book_name) {
+                    alert("This Book Name is already taken try something else!");
+                } else {
+                    const add_book = {
+                        book_id: this.state.book_id,
+                        book_name: this.state.book_name,
+                        author_name: this.state.author_name,
+                        book_cat: this.state.book_cat,
+                        quantity: this.state.quantity,
+                        publisher: this.state.publisher,
+                        book_description: this.state.book_description
+                    };
+                    this.props.newbooks(add_book, this.props.history);
+                }
+            })
+        } else {
+            const add_book = {
+                book_id: this.state.book_id,
+                book_name: this.state.book_name,
+                author_name: this.state.author_name,
+                book_cat: this.state.book_cat,
+                quantity: this.state.quantity,
+                publisher: this.state.publisher,
+                book_description: this.state.book_description
+            };
+            this.props.newbooks(add_book, this.props.history);
+        }
 
     };
 
