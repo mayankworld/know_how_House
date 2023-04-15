@@ -25,7 +25,7 @@ class ViewTransaction extends Component{
         event.preventDefault();
         if (
             window.confirm(
-                `Do you want to delete  ${book_name} book permanently?`,
+                `Do you want to delete  ${book_name} book transaction permanently?`,
             )
         ){   
             this.props.deleteTransaction(_id);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { newbooks, logoutUser, getBookCat,emptyError} from '../../actions/authentication';
+import { newbooks, logoutUser, getBookCat, getBooks, emptyError } from '../../actions/authentication';
 
 class AddBook extends Component {
 
@@ -33,22 +33,33 @@ class AddBook extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-        const add_book = {
-            book_id: this.state.book_id,
-            book_name: this.state.book_name,
-            author_name: this.state.author_name,
-            book_cat: this.state.book_cat,
-            quantity: this.state.quantity,
-            publisher: this.state.publisher,
-            book_description: this.state.book_description
-        };
-        this.props.newbooks(add_book, this.props.history);
+        let books = this.props.books.viewBook;
+        books.length > 0 && books.map((el) => {
+            console.log(el);
+            if (el.book_name == this.state.book_name) {
+                alert("This Book Name is already taken try something else!");
+            } else {
+                const add_book = {
+                    book_id: this.state.book_id,
+                    book_name: this.state.book_name,
+                    author_name: this.state.author_name,
+                    book_cat: this.state.book_cat,
+                    quantity: this.state.quantity,
+                    publisher: this.state.publisher,
+                    book_description: this.state.book_description
+                };
+
+                this.props.newbooks(add_book, this.props.history);
+            }
+        })
+
     };
 
     componentDidMount() {
 
         const { getBookCat } = this.props;
         getBookCat();
+        getBooks();
 
     }
     onCancle = e => {
@@ -56,15 +67,7 @@ class AddBook extends Component {
 
     }
     render() {
-        const { schema } = this.props.books;
-        const error = this.props.errors;
-        if(Object.keys(error).length===0){
-
-        }else{
-            alert("This Book Name is already taken try something else!");
-            this.props.emptyError();
-        }
-        console.log(error,"error");
+        const bookCat = this.props.books.schema;
         return (
             <div className="addbooks" >
                 <div className="row">
@@ -114,10 +117,11 @@ class AddBook extends Component {
                                     value={this.state.book_cat}
                                     required
                                 >
+                                    <option value="" selected="selected">Please select book category...</option>
                                     {
-                                        schema.length > 0 && schema.map((el) => {
-                                            return <option key={el}>{el}</option>
-                                        })
+                                        bookCat.length > 0 ? bookCat.map((bok) => {
+                                            return <option value={bok}>{bok}</option>
+                                        }) : null
                                     }
                                 </select>
                             </div>
@@ -182,5 +186,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { newbooks, logoutUser, getBookCat,emptyError }
+    { newbooks, logoutUser, getBookCat, emptyError, getBooks }
 )(withRouter(AddBook));

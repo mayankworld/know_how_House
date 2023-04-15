@@ -96,7 +96,7 @@ class AddTransaction extends Component {
                                 </select>
                             </div>
                             <div className="form-group d-flex">
-                                <label for="book_name col-3">Book Category:</label>
+                                <label for="book_name col-3">Student:</label>
                                 <select type="text"
                                     onChange={this.onChange}
                                     className="form-control col-8 mgl-20"

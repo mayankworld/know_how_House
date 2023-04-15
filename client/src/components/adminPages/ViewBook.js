@@ -69,7 +69,6 @@ class ViewBook extends Component{
         return(
 
                 <div>
-                    
                     <input type="text"
                     className="float-right searchBox"
                     placeholder="Search for..."

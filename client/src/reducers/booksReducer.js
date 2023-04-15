@@ -36,6 +36,7 @@ export default function (state = (initialState), action) {
             };
         case DELETE_BOOK:
             return {
+                ...state,
                 viewBook: state.viewBook.filter(viewBook =>
                     viewBook._id !== action.payload._id)
             };
