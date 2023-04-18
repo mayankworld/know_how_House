@@ -7,7 +7,7 @@ class Footer extends Component{
        
         return(
             <footer>
-                <p className="text-center">know-how House</p>
+                <p className="text-center">© 2023 Copyright | know-how House</p>
             </footer>
         );
     }
