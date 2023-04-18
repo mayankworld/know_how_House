@@ -43,7 +43,7 @@ class Navbar extends Component{
 
         return(
             <nav className="navbar navbar-default">
-                <i className="navbar-brand">LIBRARY MANAGEMENT SYSTEM</i>
+                <i className="navbar-brand">know-how House</i>
                 <div className="menus">
                     {isAuthenticated === true ? authLinks : guestLinks}
                 </div>

@@ -7,7 +7,7 @@ class Footer extends Component{
        
         return(
             <footer>
-                <p className="text-center">LIBRARY MANAGEMENT SYSTEM</p>
+                <p className="text-center">know-how House</p>
             </footer>
         );
     }
